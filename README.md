@@ -63,7 +63,7 @@ Running scaffold create-magic-app
 ✔ Choose an NPM client: yarn
 ```
 
-_Note: Since we won't be adding a redirect back to the app, go ahead and delete `/components/Callback.js` and all references to that file._
+_Note: Since we won't be adding a redirect back to the app, go ahead and delete 1. the `redirectURI` parameter given to `loginWithMagicLink()`, 2. `/components/Callback.js`, and 3. all references to `Callback.js`._
 
 ## Installing Dependencies
 
