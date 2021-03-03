@@ -1,14 +1,39 @@
 {
-  "name": "electron",
-  "version": "1.0.0",
-  "description": "Magic Electron",
-  "main": "main.js",
+  "name": "react-electron",
+  "version": "0.1.0",
+  "main": "electron/main.js",
+  "description": "A React + Electron.js Desktop app with Magic passwordless authentication.",
   "scripts": {
-    "start": "electron ."
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\""
   },
-  "author": "hcote",
-  "license": "ISC",
   "dependencies": {
-    "electron": "^12.0.0"
+    "concurrently": "^6.0.0",
+    "electron": "^12.0.0",
+    "electron-builder": "^22.10.5",
+    "magic-sdk": "^4.1.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "wait-on": "^5.2.1"
+  },
+  "devDependencies": {
+    "react-scripts": "4.0.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
