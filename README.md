@@ -1,8 +1,8 @@
 # Quick Start Instructions
 
 ```txt
-$ git clone https://github.com/hcote/magic-electron.git
-$ cd magic-electron
+$ git clone https://github.com/magiclabs/example-electron.git
+$ cd example-electron
 $ mv .env.example .env // enter your Magic Publishable API key
 $ yarn install
 $ yarn electron
@@ -15,6 +15,7 @@ This tutorial shows how you can integrate Magic passwordless authentication into
 ## File Structure
 
 ```txt
+├── .env
 ├── README.md
 ├── electron
 │   └── main.js
@@ -54,7 +55,7 @@ npx: installed 1 in 1.472s
 
 Running scaffold create-magic-app
 
-✔ What is your project named? · magic-electron
+✔ What is your project named? · example-electron
 ✔ Choose a template: · hello-world-react
 ✔ Enter your Magic publishable API key: · pk_test_3F8F2B46C789AB90
 ✔ Choose an NPM client: yarn
