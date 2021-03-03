@@ -9,7 +9,7 @@ $ yarn electron
 
 # Introduction
 
-This tutorial shows how you can integrate Magic passwordless authentication into a desktop app using [Electron](https://www.electronjs.org/). Electron is a JavaScript framework based on Chromium and Node.js that allows you to use HTML, CSS, and JS to build cross-platform (Windows, Mac and Linux) native desktop applications. In this app, we'll be using React.
+This tutorial shows how you can integrate Magic passwordless authentication into a desktop app using [Electron](https://www.electronjs.org/). Electron is a JavaScript framework based on Chromium and Node.js that allows you to use HTML, CSS, and JS to build cross-platform (Windows, Mac and Linux) native desktop applications. For this, we'll be using React.
 
 ## File Structure
 
@@ -71,7 +71,7 @@ yarn add electron electron-builder concurrently wait-on
 
 ## Main.js
 
-`electron/main.js` contains the `main process` for the Electron app. When the app is ready to load, we create our Electron app using `BrowserWindow`, and load it with our React app which is running in the background on `localhost`. All of this code is run in a `Node.js` environment.
+`electron/main.js` contains the `main process` for the app. When it's ready, we create our Electron app using `BrowserWindow`, and load it with our React app which is running in the background on `localhost:3000`. When the user closes out of the window, quit the app. All of this code is run in a `Node.js` environment.
 
 ```js
 const { app, BrowserWindow } = require('electron');
@@ -96,8 +96,14 @@ app.whenReady().then(createWindow);
 Our `package.json` will need additional fields to know how to start the app.
 
 `"main": "electron/main.js"` specifies where the main process is being run.
-`"electron": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\""` is our start instructions. Our react app needs to be running before the electron app is able to load and this ensures that happens.
+
+Below is our start instructions. Our react app needs to be running before the electron app is able to load and this ensures that happens.
+```js
+"scripts": {
+    "electron": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\""
+}
+```
 
 ## Conclusion
 
-Even though this was more of an Electron tutorial than a Magic one, you now have a running desktop app built with React and complete with authentication!
+Although this was more of an Electron tutorial than a Magic one, you now have a running desktop app built with React and complete with authentication!
