@@ -12,6 +12,8 @@ $ yarn electron
 
 This tutorial shows how you can integrate Magic passwordless authentication into a desktop app using [Electron](https://www.electronjs.org/). Electron is a JavaScript framework based on Chromium and Node.js that allows you to use HTML, CSS, and JS to build cross-platform (Windows, Mac and Linux) native desktop applications. For this, we'll be using React.
 
+View the example code [here](https://github.com/magiclabs/example-electron).
+
 ## File Structure
 
 ```txt
@@ -73,24 +75,37 @@ yarn add electron electron-builder concurrently wait-on
 
 ## Main.js
 
-`electron/main.js` contains the `main process` for the app. When it's ready, we create our Electron app using `BrowserWindow`, and load it with our React app which is running in the background on `localhost:3000`. When the user closes out of the window, quit the app. All of this code is run in a `Node.js` environment.
+`electron/main.js` contains the `main process` for the app. When it's ready, we create our Electron app using the `BrowserWindow` module, and load it with our React app which is running in the background on `localhost:3000`. When the user closes out of the window, quit the app. All of this code is run in a `Node.js` environment.
 
 ```js
 const { app, BrowserWindow } = require('electron');
 
+// Build a new browser window for your app to open up
 function createWindow() {
-  let win = new BrowserWindow({});
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+  });
 
   win.loadURL('http://localhost:3000');
-
-  win.on('closed', () => {
-    win = null;
-    app.quit();
-  });
 }
 
-// Listening for the app to be ready before we create the window
+// Once app is initialized, create the app
 app.whenReady().then(createWindow);
+
+// Quit the app when no windows are open
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
+
+// Only create a new window if no windows are already open (prevents your app being open multiple times)
+app.on('activate', () => {
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
+  }
+});
 ```
 
 ## Package.json
