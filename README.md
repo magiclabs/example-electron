@@ -3,6 +3,7 @@
 ```txt
 $ git clone https://github.com/hcote/magic-electron.git
 $ cd magic-electron
+$ mv .env.example .env // enter your Magic Publishable API key
 $ yarn install
 $ yarn electron
 ```
@@ -98,6 +99,7 @@ Our `package.json` will need additional fields to know how to start the app.
 `"main": "electron/main.js"` specifies where the main process is being run.
 
 Below is our start instructions. Our react app needs to be running before the electron app is able to load and this ensures that happens.
+
 ```js
 "scripts": {
     "electron": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\""
