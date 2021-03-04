@@ -36,7 +36,7 @@ View the example code [here](https://github.com/magiclabs/example-electron).
 └── yarn.lock
 ```
 
-## Magic React Boilerplate
+# Magic React Boilerplate
 
 The Magic React app boilerplate will be taken from the `Hello World (React)` template using the `npx make-magic` command.
 
@@ -63,11 +63,15 @@ Running scaffold create-magic-app
 ✔ Choose an NPM client: yarn
 ```
 
-_Note: Since we won't be adding a redirect back to the app, go ahead and delete 1. the `redirectURI` parameter given to `loginWithMagicLink()`, 2. `/components/Callback.js`, and 3. all references to `Callback.js`._
+Since we won't be adding a redirect back to the app, go ahead and delete
+
+1. the `redirectURI` parameter given to `loginWithMagicLink()`
+2. the `/components/Callback.js` component
+3. the `/callback` route in `App.js`
 
 ## Installing Dependencies
 
-`electron-builder` is what compiles our app. `concurrently` and `wait-on` will be used together in the `yarn electron` start script which will run our react app and build the electron app at the same time.
+`electron-builder` is what compiles our app. `concurrently` and `wait-on` will be used together in the start script which will run our React app and build the Electron app at the same time.
 
 ```txt
 yarn add electron electron-builder concurrently wait-on
@@ -75,7 +79,7 @@ yarn add electron electron-builder concurrently wait-on
 
 ## Main.js
 
-`electron/main.js` contains the `main process` for the app. When it's ready, we create our Electron app using the `BrowserWindow` module, and load it with our React app which is running in the background on `localhost:3000`. When the user closes out of the window, quit the app. All of this code is run in a `Node.js` environment.
+`electron/main.js` contains the `main process` for the app. When it's ready, we create our Electron app using the `BrowserWindow` module, and load it with our React app which is running in the background on `localhost:3000`. All of this code is run in a `Node.js` environment.
 
 ```js
 const { app, BrowserWindow } = require('electron');
@@ -112,16 +116,14 @@ app.on('activate', () => {
 
 Our `package.json` will need additional fields to know how to start the app.
 
-`"main": "electron/main.js"` specifies where the main process is being run.
+1. Add `"main": "electron/main.js"` to specify where the main process is being run.
 
-Below is our start instructions. Our react app needs to be running before the electron app is able to load and this ensures that happens.
+2. Below is the start script that needs to be added inside the `scripts` object. The React app needs to be running before the Electron app is able to load and this ensures that happens.
 
 ```js
-"scripts": {
-    "electron": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\""
-}
+"electron": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\""
 ```
 
-## Conclusion
+# Done
 
-Although this was more of an Electron tutorial than a Magic one, you now have a running desktop app built with React and complete with authentication!
+Your Electron app is now secured with Magic, and you can run the app with `yarn electron`!
