@@ -59,7 +59,7 @@ Running scaffold create-magic-app
 
 ✔ What is your project named? · example-electron
 ✔ Choose a template: · hello-world-react
-✔ Enter your Magic publishable API key: · pk_test_3F8F2B46C789AB90
+✔ Enter your Magic publishable API key: YOUR_API_KEY
 ✔ Choose an NPM client: yarn
 ```
 
